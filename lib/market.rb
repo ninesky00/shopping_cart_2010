@@ -60,4 +60,8 @@ class Market
     end
     item_names.sort
   end
+
+  def date
+    Date.today.strftime("%d/%m/%Y")
+  end
 end
