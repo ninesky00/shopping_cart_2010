@@ -46,4 +46,11 @@ class Market
     end
     breakdown
   end
+
+  def overstocked_items
+    total_inventory.select do |item, item_info|
+      vendors_that_sell(item).count > 1
+      item_info[:quantity] > 50
+    end.keys
+  end
 end
