@@ -53,4 +53,11 @@ class Market
       item_info[:quantity] > 50
     end.keys
   end
+
+  def sorted_item_list
+    item_names = items_on_the_market.map do |item|
+      item.name
+    end
+    item_names.sort
+  end
 end
