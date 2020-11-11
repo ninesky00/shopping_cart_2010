@@ -31,6 +31,14 @@ class Market
     item_hash
   end
 
+  def items_on_the_market
+    all_items = []
+    @vendors.each do |vendor|
+      all_items << vendor.inventory.keys
+    end
+    all_items.flatten.uniq
+  end
+
   # def total_inventory
   #   breakdown = {}
   #   @vendors.each do |vendor|
