@@ -39,15 +39,11 @@ class Market
     all_items.flatten.uniq
   end
 
-  # def total_inventory
-  #   breakdown = {}
-  #   @vendors.each do |vendor|
-  #     require 'pry';binding.pry
-  #     vendor.inventory.each do |item|
-  #       breakdown ||= item 
-  #       breakdown[item] = 
-  #     end
-  #     end
-  #   end
-  # end
+  def total_inventory
+    breakdown = {}
+    items_on_the_market.each do |item|
+      breakdown[item] = item_info(item)
+    end
+    breakdown
+  end
 end
