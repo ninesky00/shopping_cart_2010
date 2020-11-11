@@ -22,7 +22,7 @@ class MarketTest < MiniTest::Test
     assert_equal [], @market.vendors
   end
 
-  def test_
+  def test_add_vendors
     @vendor1.stock(@item1, 35)
     @vendor1.stock(@item2, 7)
     @vendor2.stock(@item4, 50)
@@ -31,6 +31,21 @@ class MarketTest < MiniTest::Test
     @market.add_vendor(@vendor1)
     @market.add_vendor(@vendor2)
     @market.add_vendor(@vendor3)
+    
     assert_equal [@vendor1, @vendor2, @vendor3], @market.vendors
+    expected = ["Rocky Mountain Fresh", "Ba-Nom-a-Nom", "Palisade Peach Shack"]
+    assert_equal expected, @market.vendor_names
+  end
+
+  def test_see_what_vendors_sell
+    @vendor1.stock(@item1, 35)
+    @vendor1.stock(@item2, 7)
+    @vendor2.stock(@item4, 50)
+    @vendor2.stock(@item3, 25)
+    @vendor3.stock(@item1, 65)
+    @market.add_vendor(@vendor1)
+    @market.add_vendor(@vendor2)
+    @market.add_vendor(@vendor3)
+    
   end
 end
