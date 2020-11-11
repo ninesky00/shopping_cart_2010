@@ -144,4 +144,20 @@ class MarketTest < MiniTest::Test
     Date.stubs(:today).returns(Date.parse("24/02/2020"))
     assert_equal "24/02/2020", @market.date
   end
+
+  def test_can_sell_items
+    @vendor1.stock(@item1, 35)
+    @vendor1.stock(@item2, 7)
+    @vendor2.stock(@item4, 50)
+    @vendor2.stock(@item3, 25)
+    @vendor3.stock(@item1, 65)
+    @vendor3.stock(@item3, 10)
+    @market.add_vendor(@vendor1)
+    @market.add_vendor(@vendor2)
+    @market.add_vendor(@vendor3)
+    assert_equal false, @market.sell(@item1, 200)
+    assert_equal false, @market.sell(@item5, 1)
+    assert_equal true, @market.sell(@item4, 5)
+    assert_equal 45, @vendor2.check_stock(@item4)
+  end
 end
